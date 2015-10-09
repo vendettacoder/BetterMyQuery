@@ -135,9 +135,9 @@ def getUserFeedback(results,dvec):
     for doc in results:
         print '-------------------------------------------'
         print 'DOC RANK : ', doc['rank']
-        print 'DOC URL : ', doc['url']
-        print 'DOC TITLE : ', doc['title']
-        print 'DOC DESCRIPTION : ', doc['description']
+        print 'DOC URL : ', doc['url'].encode('ascii','ignore')
+        print 'DOC TITLE : ', doc['title'].encode('ascii','ignore')
+        print 'DOC DESCRIPTION : ', doc['description'].encode('ascii','ignore')
         print '-------------------------------------------'
         feedback=raw_input('Please Enter [1] : Relevant  [2] : Non Relevant ')
         print 
@@ -211,7 +211,7 @@ def main():
         
         print 'FEEDBACK SUMMARY'
         print 'Query : ',query
-        print 'BingUrl : ',bingUrl
+        print 'BingUrl : ',bingUrl.encode('ascii','ignore')
         print 'Number of Results : ',len(queryResults['d']['results'])     
         if len(queryResults['d']['results']) < 10: # Terminating the program if search results are not sufficient  
             print ('Not Enough Query search results..Terminating the program')
@@ -222,9 +222,9 @@ def main():
         for (rank,each) in enumerate(queryResults['d']['results']):
             tempDict={}
             tempDict['rank']=rank+1
-            tempDict['title']=each['Title'].lower()
-            tempDict['url']=each['DisplayUrl']
-            tempDict['description']=each['Description'].lower()
+            tempDict['title']=each['Title'].encode('ascii','ignore').lower()
+            tempDict['url']=each['DisplayUrl'].encode('ascii','ignore')
+            tempDict['description']=each['Description'].encode('ascii','ignore').lower()
             qResultDict['data'].append(tempDict)
         word_dictionary=updateDictionary(word_dictionary,qResultDict['data']) #Contains the dictionary of all words along with 
                                                                               # their counts 
