@@ -197,6 +197,7 @@ def main():
     print
     query=raw_input('Enter the Query : ')
     precisionValue=raw_input('Enter the desired Precision@10 value : ') #Precision value to be achieved eventually
+    accountKey=raw_input('Enter the BING Account key : ')  #BING account key    
     run_count=0
     word_dictionary={} # Collection of all words extracted from the BING Search results
     achieved_precision=0
@@ -204,7 +205,6 @@ def main():
         query=urllib.quote(query)
         queryList=query.split('%20')
         bingUrl = 'https://api.datamarket.azure.com/Bing/Search/Web?Query=%27userquery%27&$top=10&$format=json'    
-        accountKey = "JbyKIOD9ljIg7tO7i8C4PzOBmKzTuUOcjCIA9R53A8k" #BING account key
         bingUrl=bingUrl.replace('userquery',query) 
         content=bing_api(bingUrl,accountKey)
         queryResults=json.loads(content) #Parse the json documents containing query results
